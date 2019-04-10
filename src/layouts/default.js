@@ -1,12 +1,21 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Helmet from "react-helmet";
+import { connect } from "react-redux";
 import withRoot from '../utils/withRoot';
 
 import Notification from "../components/notifications/Notification";
 import AccountButton from "../components/navigation/AccountButton"
+import Navigation from "../components/navigation/Navigation"
 
-import "../assets/sass/custom.scss";
+import {
+  EditablesContext,
+  theme
+} from 'react-easy-editables';
+
+import "../assets/sass/less-cms/base.scss";
+
 import favicon from '../assets/images/icon.png'
+
 
 const styles = {
   container: {
@@ -18,6 +27,13 @@ const styles = {
     flexGrow: '1'
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isEditingPage: state.adminTools.isEditingPage,
+  };
+};
+
 
 const DefaultLayout = props => (
   <div style={styles.container}>
@@ -35,8 +51,15 @@ const DefaultLayout = props => (
     </Helmet>
     <Notification />
     <AccountButton />
-    <div className='page-content' style={styles.content}>{props.children}</div>
+
+    <EditablesContext.Provider value={ { theme: theme, showEditingControls: props.isEditingPage } }>
+      <div className="page-wrapper">
+        <Fragment>{props.children}</Fragment>
+      </div>
+    </EditablesContext.Provider>
   </div>
 );
 
-export default withRoot(DefaultLayout);
+export default withRoot(connect(mapStateToProps, null)(DefaultLayout));
+
+

@@ -7,9 +7,7 @@ import {
 } from "../redux/actions";
 
 import Layout from "../layouts/default.js";
-import Editable from "../components/editables/Editable";
-import PlainTextEditor from "../components/editingTools/PlainTextEditor";
-import RichTextEditor from "../components/editingTools/RichTextEditor";
+import { EditableText, EditableParagraph } from "react-easy-editables";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -51,32 +49,11 @@ class HomePage extends React.Component {
       <Layout>
 
         <section className="no-padding">
-          <Editable
-            editor={PlainTextEditor}
-            content={content["demo-title"]}
-            handleSave={this.onSave("demo-title")}
-          >
-            {content["demo-title"]
-              ? content["demo-title"]["text"]
-              : "Title"}
-          </Editable>
+          <EditableText content={content["demo-title"]} handleSave={this.onSave("demo-title")} />
         </section>
 
         <section id="about" className="wow fadeIn">
-          <Editable
-            editor={RichTextEditor}
-            content={content["demo-description"]}
-            handleSave={this.onSave("demo-description")}
-          >
-            <div
-              className="text-extra-large black-text"
-              dangerouslySetInnerHTML={{
-                __html: content["demo-description"]
-                  ? content["demo-description"]["text"]
-                  : "Description"
-              }}
-            />
-          </Editable>
+          <EditableParagraph content={content["demo-description"]} handleSave={this.onSave("demo-description")} />
         </section>
 
       </Layout>

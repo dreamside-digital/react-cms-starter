@@ -1,4 +1,5 @@
-# Connecting the Dots
+# React CMS starter
+
 
 
 
