@@ -1,5 +1,5 @@
 import React from "react";
-import { push, Link } from "gatsby";
+import { push } from "gatsby";
 import firebase from "../../firebase/init";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button"
@@ -15,7 +15,6 @@ import {
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import RegistrationModal from "./RegistrationModal";
 
 const styles = {
   container: {
@@ -85,7 +84,7 @@ class AccountButton extends React.Component {
   };
 
   render() {
-    const { props, openMenu, closeMenu, logout, login } = this;
+    const { props, openMenu, closeMenu, logout } = this;
     const { anchorEl } = this.state;
 
     if (props.isLoggedIn) {

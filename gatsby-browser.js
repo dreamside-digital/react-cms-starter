@@ -6,20 +6,7 @@
 
 // You can delete this file if you're not using it
 import "babel-polyfill";
-import React from "react";
-import { Router } from "react-router-dom";
-import { Provider } from "react-redux";
 
-import createStore from "./src/redux/createStore";
+import wrapWithProvider from "./src/redux/wrapWithProvider";
 
-export const replaceRouterComponent = ({ history }) => {
-  const store = createStore();
-
-  const ConnectedRouterWrapper = ({ children }) => (
-    <Provider store={store}>
-      <Router history={history}>{children}</Router>
-    </Provider>
-  );
-
-  return ConnectedRouterWrapper;
-};
+export const wrapRootElement = wrapWithProvider

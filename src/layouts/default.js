@@ -5,7 +5,6 @@ import withRoot from '../utils/withRoot';
 
 import Notification from "../components/notifications/Notification";
 import AccountButton from "../components/navigation/AccountButton"
-import Navigation from "../components/navigation/Navigation"
 
 import {
   EditablesContext,
